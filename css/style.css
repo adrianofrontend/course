@@ -132,6 +132,9 @@ a {
   background-color: #484848;
 }
 
+#header ul li {
+  display: inline;
+}
 .flex-box {
   display: -webkit-flex;
   display: flex;
