@@ -1,193 +1,174 @@
- var formattedName = HTMLheaderName.replace("%data%", "Adriano Ribeiro");
- var role = "Front-End";
-
- var formattedRole = HTMLheaderRole.replace("%data%", role);
-
- var bio = {
+var bio = {
     "name" : "Adriano Ribeiro",
-    "role" : "Desenvolvedor",
+    "role" : "Front End Developer",
     "contacts" : {
-        "mobile" : "11 98736-0129",
         "email" : "adrianofrontend@gmail.com",
         "github" : "adrianofrontend",
-        "location" : "Brazil"
+        "linkedin" : "https://www.linkedin.com/in/adriano-santos-ribeiro",
+        "location" : "São Paulo, SP"
     },
-
-    "welcomeMesage" : "Aprendendo JS",
-    "skills" : ["HTML5", "PROGRAMMING", "CSS3","JS","SEMANTIC", "RESPONSIVE DESIGN"],
-    "bioPic" : "https://adribeiro.com.br/wp-content/uploads/2015/11/banner_programador_preto_2.jpg"
-    
+    "picture": "images/frontend.jpg",
+    "welcomeMessage": "Olá! Eu sou um desenvolvedor de front-end de São Paulo, SP!",
+    "skills": ["HTML", "CSS", "JS", "Photoshop", "Web Development", "Responsive Web Design"]
 };
 
- if(bio.skills.length > 0){
-
-    $("#header").append(HTMLskillsStart);
- 
-
-    // var skills = ["awesomeness", "programming", "CSS3","JS","Semantic", "Design Responsive"]
-
-    var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-        $("#skills").append(formattedSkill);
-        formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-
-        $("#skills").append(formattedSkill);
-        formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-
-        $("#skills").append(formattedSkill);
-        formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-
-        $("#skills").append(formattedSkill);
-        formattedSkill = HTMLskills.replace("%data%", bio.skills[4]);
-
-        $("#skills").append(formattedSkill);
-        formattedSkill = HTMLskills.replace("%data%", bio.skills[5]);
-
-        $("#skills").append(formattedSkill);
-        formattedSkill = HTMLskills.replace("%data%", bio.skills[6]);
-
- }
-
- var work = {
-    "jobs" : [
+var works = {
+    "jobs": [
         {
-            "employer": "Tesla Tecnologia",
-            "title": "Programming HTML JR",
-            "dates" : 2014,
-            "description" : "Development Landing Pages, Emails, WebSites"
+            "employer": "Freelance",
+            "title": "Web Developer and Designer",
+            "location": "Izmir,Turkiye",
+            "workDate": "July 2014 - current",
+            "description": "As of 2014, I continue to develop myself by continuously working on web development and web design, using various big resources, blogs and communities, supporting small businesses, and working on projects I have designed. I am still continuing my career as freelance web frontend developer and designer."
         },
-
         {
-           "employer": "Soul Digital",
-           "title": "Programming Web",
-           "dates" : 2015,
-           "description" : "Development Landing Pages, Emails, WebSites"
+            "employer": "Hogarth WW",
+            "title": "Editor",
+            "location": "Istanbul,Turkiye",
+            "workDate": "March 2015 - March 2016",
+            "description": "I worked for UK-based agency, which working on creative marketing and media projects and adapting these works for different countries around the world, as a freelance content editor on a worldwide music project"
         }
-
     ]
+};
+
+var projects = {
+	"projects": [
+		{
+			"title": "IZMovie",
+			"datesWorked": "May 2016",
+			"description": "Created a movie database website desing and frontend development for my portfolio.",
+			"images": ["images/proj1.jpg"],
+			"url": "http://erenguldas.com/portfolyo/izmovie/"
+		},
+		{
+			"title": "CWC",
+			"datesWorked": "January 2016",
+			"description": "Created a digital content agency website.",
+			"images": ["images/proj2.jpg"],
+			"url": "http://www.coffeewritingcontent.com/"
+		}
+	]
+};
+
+var education = {
+    "onlineCourses": [
+        {
+            "school": "Udacity",
+            "title": "Frontend Web Development Nanodegree",
+            "dates": "January 2017",
+            "url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
+        },
+        {
+            "school": "FreeCodeCamp",
+            "title": "Frontend Web Development",
+            "dates": "October 2016",
+            "url": "https://www.freecodecamp.com/"
+        }
+    ]
+};
+
+
+
+var formattedName = HTMLheaderName.replace('%data%', bio.name);
+var formattedRole = HTMLheaderRole.replace('%data%', bio.role);
+var formattedBioPic = HTMLbioPic.replace('%data%', bio.picture);
+var formattedWelcomeMsg = HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage);
+
+var formattedContactInfo = [];
+formattedContactInfo.push(HTMLemail.replace('%data%', bio.contacts.email));
+formattedContactInfo.push(HTMLgithub.replace('%data%', bio.contacts.github));
+formattedContactInfo.push(HTMLlinkedin.replace('%data%', bio.contacts.linkedin));
+formattedContactInfo.push(HTMLlocation.replace('%data%', bio.contacts.location));
+
+$('#header').prepend(formattedRole);
+$('#header').prepend(formattedName);
+$('#header').append(formattedBioPic);
+$('#header').append(formattedWelcomeMsg);
+
+for (var i = 0; i < formattedContactInfo.length; i++) {
+    $('#topContacts').append(formattedContactInfo[i]);
+    $('#footerContacts').append(formattedContactInfo[i]);
 }
 
- function displayWork(){
-    for (job in work.jobs){
+if (bio.skills.length > 0) {
+    $('#header').append(HTMLskillsStart);
 
-        $("#workExperience").append(HTMLworkStart);
-    
-        var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-        var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-        var formattedEmployerTitle = formattedEmployer + formattedTitle;
-    
-        $(".work-entry:last").append(formattedEmployerTitle);
-    
-        var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-        $(".work-entry:last").append(formattedDates);
-    
-        var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-        $(".work-entry:last").append(formattedDescription);
-    
-         
+    for (var i = 0; i < bio.skills.length; i++) {
+        var formattedSkills = HTMLskills.replace('%data%', bio.skills[i]);
+        $('#skills').append(formattedSkills);
     }
-    
- }
+}
 
-/*   function inName(name){
-    name = name.trim().split(" ");
-    console.log(name);
+works.display = function() {
+    if (works.jobs.length > 0) {
+        $('#workExperience').append(HTMLworkStart);
 
-    name[1] = name[1].toUpperCase();
-    name[0] = name[0].slice(0,1).toUpperCase() +
-    name[0].slice(1).toLowerCase();
+        for (var job in works.jobs ) {
+            var formattedEmployer = HTMLworkEmployer.replace('%data%', works.jobs[job].employer);
+            var formattedWorkTitle = HTMLworkTitle.replace('%data%', works.jobs[job].title);
+            var formattedEmployerTitle = formattedEmployer + formattedWorkTitle;
+            var formattedWorkLocation = HTMLworkLocation.replace('%data%', works.jobs[job].location);
+            var formattedWorkDate = HTMLworkDates.replace('%data%', works.jobs[job].workDate);
+            var formattedWorkDescription = HTMLworkDescription.replace('%data%', works.jobs[job].description);
 
-    return name[0] + " "+name[1];
- }
+            $('.work-entry:last').append(formattedEmployerTitle);
+            $('.work-entry:last').append(formattedWorkLocation);
+            $('.work-entry:last').append(formattedWorkDate);
+            $('.work-entry:last').append(formattedWorkDescription);
+        }
+    }
+};
 
-    $("#main").append(internationalizeButton); */
-
-/*  displayWork();
-
- $(document).click(function(loc) { 
-     var x = loc.pageX;
-     var y = loc.pageY;
-
-     logClicks(x,y);
-});
- */
-
-
+projects.display = function() {
+    if (projects.projects.length > 0) {
+        $('#projects').append(HTMLprojectStart);
 
 
+        for (var i in projects.projects) {
+            var formattedProjTitle = HTMLprojectTitle.replace('%data%', projects.projects[i].title).replace("#", projects.projects[i].url);
+            var formattedProjDates = HTMLprojectDates.replace('%data%', projects.projects[i].datesWorked);
+            var formattedProjDescription = HTMLprojectDescription.replace('%data%', projects.projects[i].description);
 
 
+            $('.project-entry:last').append(formattedProjTitle);
+            $('.project-entry:last').append(formattedProjDates);
+            $('.project-entry:last').append(formattedProjDescription);
 
 
+            if (projects.projects[i].images.length > 0) {
+                for(var img in projects.projects[i].images) {
+    				var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[i].images[img]);
+    				$(".project-entry:last").append(formattedProjectImage);
+    			}
+            }
 
+        }
+    }
+};
 
+education.display = function() {
+    if(education.onlineCourses.length > 0) {
+        $('#education').append(HTMLschoolStart);
 
-/*  var adriano = {};
+        if(education.onlineCourses.length > 0) {
+            $('#education').append(HTMLonlineClasses);
+            for (i = 0; i < education.onlineCourses.length; i++) {
+                $("#education").append(HTMLschoolStart);
+                var formattedOnlineTitle = HTMLonlineTitle.replace('%data%', education.onlineCourses[i].title );
+                var formattedOnlineSchool = HTMLonlineSchool.replace('%data%', education.onlineCourses[i].school );
+                var formattedComplated = HTMLonlineDates.replace('%data%', education.onlineCourses[i].dates );
+                var formattedURL = HTMLonlineURL.replace('%data%', education.onlineCourses[i].url );
+                // var formattedProjImg = HTMLprojectImage.replace('%data%', projects.projects[i].images);
+                $('.education-entry:last').append(formattedOnlineTitle + formattedOnlineSchool);
+                $('.education-entry:last').append(formattedComplated);
+                $('.education-entry:last').append(formattedURL);
 
- adriano.job = "course dev";
+            }
+        }
+    }
+};
 
- var makeCourse = function(){
-     console.log("Made a Course");
- }
-
- var courses = 0;
- while(adriano.job === "course dev"){
-     makeCourse();
-     courses = courses + 1;
-     if(courses === 10){
-         adriano.job = "learning specialist";
-
-     }
- 
- }
-
- console.log(adriano.job);
- */
-
-
-
- var education = {
-     "schools": [
-         {
-             "name" : "Eckerd College",
-             "city" : "Saint Petersburg, FL, US",
-             "degree" : "BA",
-             "majors" : ["CS"],
-             "dates" : 2018,
-             "url" : "http://example.com"
-         },
-
-         {
-             "name" : "Nova Southeastern University",
-             "city" : "Fort Lauderdale, FL, US",
-             "degree" : "Masters",
-             "majors" : ["CS"],
-             "dates" : 2018,
-             "url" : "http://example.com"
-         }
-     ],
-
-     "onlineCourses" : [
-         {
-             "title": "JavaScript",
-             "school" : "Udacity",
-             "dates" : 2018
-         }
-     ]
- }
-
-
-
-
-
-
-//  var work = {};
-//  work.position = "Course Developer",
-//  work.employer = "Udacity",
-//  work.years = 0.3,
- 
-
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-
-
-//  $("#main").append(work.position);
+$('#mapDiv').append(googleMap);
+works.display();
+projects.display();
+education.display();
